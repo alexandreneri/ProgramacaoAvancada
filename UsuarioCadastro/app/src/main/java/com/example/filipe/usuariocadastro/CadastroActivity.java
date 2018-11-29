@@ -34,7 +34,12 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
     private static final int PICK_FROM_GALLERY = 2;
     int opcao = 0;
     private static final int SELECT_PHOTO = 100;
+
+
     private final Usuario usuario = new Usuario(this);
+    //Padrão de projeto:
+    //Padrões de criação
+    //Singleton - Usado quando desejado, que uma classe tenha apenas uma instância na aplicação.
 
 
     @Override
@@ -69,7 +74,18 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
             buttonExcluir.setEnabled(false);
 
         final String[] option = new String[] { "Take from Camera","Select from Gallery" };
+
+        /*Padrões de projeto:
+        Padrões Estruturais
+        Adapter - A ação desse padrão converte a interface de uma classe em outra, esperada pelo objeto cliente.
+        Através dessa conversão, permite que classes com incompatibilidade de interfaces, consigam serem adaptadas
+        para que outros objetos possam trabalhar juntos.*/
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, option);
+
+        /*Padrão de projeto de criação
+        Builder
+        Builder permite a separação da construção de um objeto complexo da sua representação,
+        de forma que o mesmo processo de construção possa criar diferentes representações.*/
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Option");
         builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
@@ -162,9 +178,29 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
                 break;
             }
             case R.id.buttonExcluir : {
-                usuario.excluir();
-                Toast.makeText(getApplicationContext(), "Usuário Excluído", Toast.LENGTH_LONG).show();
-                finish();
+                /*Padrão de projeto de criação
+                Builder
+                Builder permite a separação da construção de um objeto complexo da sua representação,
+                de forma que o mesmo processo de construção possa criar diferentes representações.*/
+                new AlertDialog.Builder(this)
+                        .setTitle("Deletando usuário")
+                        .setMessage("Tem certeza que deseja deletar esse usuário?")
+                        .setPositiveButton("sim",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        usuario.excluir();
+                                        Toast.makeText(getApplicationContext(), "Usuário Excluído", Toast.LENGTH_LONG).show();
+                                        finish();
+                                    }
+                                })
+                        .setNegativeButton("não", null)
+                        .show();
+
+
+                //usuario.excluir();
+                //Toast.makeText(getApplicationContext(), "Usuário Excluído", Toast.LENGTH_LONG).show();
+                //finish();
                 break;
             }
             case R.id.buttonSalvar :{

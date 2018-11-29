@@ -14,6 +14,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/*Padrões de projeto:
+Padrões Estruturais
+Adapter - A ação desse padrão converte a interface de uma classe em outra, esperada pelo objeto cliente.
+Através dessa conversão, permite que classes com incompatibilidade de interfaces, consigam serem adaptadas
+para que outros objetos possam trabalhar juntos.*/
 public class UsuarioAdapter extends ArrayAdapter<Usuario> {
 
     private ArrayList<Usuario> usuarios;

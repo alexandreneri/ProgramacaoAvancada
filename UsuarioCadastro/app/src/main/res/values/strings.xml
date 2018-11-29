@@ -15,4 +15,5 @@
     <string name="Add_Image">Adicionar</string>
     <string name="titulo_consultando">Listando usuários</string>
     <string name="titulo_menu">Menu Main</string>
+    <string name="btn_sign_out">FECHAR</string>
 </resources>
